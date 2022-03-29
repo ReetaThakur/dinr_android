@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    tools:ignore="MissingPrefix">
+
+
+    <TextView
+        android:id="@+id/lblListHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Cities"
+        android:textSize="17dp"
+        fontPath="fonts/HelveticaLT45Light.ttf"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/down_arrow"
+        android:layout_width="17dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/lblListHeader"
+        android:src="@drawable/arrow_down"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"/>
+
+
+</RelativeLayout>

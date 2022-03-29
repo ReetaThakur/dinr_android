@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray_topbar">#2E2E2E</color>
+    <color name="blue_facebook">#3B5986</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="yellow">#FFC633</color>
+
+    <color name="gray_text">#2E2E2E</color>
+
+    <color name="gray_light">#C9D1D2</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="black">#000000</color>
+
+    <color name="error_red">#4F0000</color>
+
+
+
+</resources>

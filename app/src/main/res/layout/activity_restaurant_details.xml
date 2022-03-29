@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dinr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/credit_card_missing_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reservations are free but credit card information is required to reserve."
+        dinr:fontName="MarkBook.otf"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/gray_light"
+        android:gravity="center"
+        />
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_below="@id/credit_card_missing_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/restaurant_details_max_image_size"/>
+
+    <ImageView
+        android:id="@+id/info_icon"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@drawable/icon_information"
+        android:layout_below="@id/credit_card_missing_text"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"/>
+
+    <ListView
+        android:id="@+id/openings_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pager"
+        android:layout_above="@+id/book_now_button"/>
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/no_opening_message"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pager"
+        android:layout_above="@+id/book_now_button"
+        android:textColor="@color/white"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="There are currently no availabilities but we can notify you when something opens up. Your Notify Me selections are refreshed daily."
+        dinr:fontName="MarkBook.otf"/>
+
+    <Button
+        android:id="@+id/book_now_button"
+        android:layout_width="fill_parent"
+        android:layout_height="65dp"
+        android:background="@drawable/action_button_book"
+        android:text="@string/book_now"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

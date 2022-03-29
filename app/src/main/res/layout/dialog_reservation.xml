@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dinr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_topbar"
+    android:layout_gravity="center"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/title"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="@string/please_confirm_the_following"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="left"
+        android:textSize="18sp"
+        dinr:fontName="MarkBook.otf"/>
+
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/restaurant_name"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="Le Bremner"
+        android:layout_below="@+id/title"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:textSize="17sp"
+        android:gravity="left"
+        android:textStyle="bold"
+        dinr:fontName="MarkBook.otf"/>
+
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/restaurant_reservation_time"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="6:30pm - 9:00pm"
+        android:layout_below="@+id/restaurant_name"
+        android:textColor="@color/white"
+        android:gravity="left"
+        android:textSize="15sp"
+        dinr:fontName="MarkBook.otf"/>
+
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/restaurant_reservation_details"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="4-5 @ Table"
+        android:layout_below="@+id/restaurant_reservation_time"
+        android:textColor="@color/white"
+        android:gravity="left"
+        android:textSize="15sp"
+        dinr:fontName="MarkBook.otf"/>
+
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/restaurant_address"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="361 Saint Paul East, Montral, Quebec, H2Y 1H3"
+        android:layout_below="@+id/restaurant_reservation_details"
+        android:textColor="@color/white"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/icon_marker_white"
+        dinr:fontName="MarkBook.otf"/>
+
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/restaurant_phone"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="514 622 2074"
+        android:layout_below="@+id/restaurant_address"
+        android:textColor="@color/white"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/icon_phone_white"
+        dinr:fontName="MarkBook.otf"/>
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/warning"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/your_reservation_cannot_be_guaranteed"
+        android:layout_below="@+id/restaurant_phone"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="13sp"
+        dinr:fontName="MarkBook.otf"
+        />
+
+
+   <Button
+        android:id="@+id/dialogButtonReserve"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/action_button"
+        android:text="@string/yes_I_am_sure"
+        android:layout_below="@+id/warning"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Button
+        android:id="@+id/dialogButtonCancel"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/action_button2"
+        android:textColor="@color/white"
+        android:text="@string/back"
+        android:layout_below="@+id/dialogButtonReserve"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        />
+
+</RelativeLayout>

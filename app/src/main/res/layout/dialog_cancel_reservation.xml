@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dinr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_topbar"
+    android:layout_gravity="center"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/title"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="@string/are_you_sure_you_want_to_cancel_this_reservation_You_wont_be_able_to_make_another_reservation_on_DINR_today."
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="left"
+        android:textSize="21sp"
+        dinr:fontName="MarkBook.otf"/>
+
+
+    <!--<com.godynamo.dinr.ui.CustomTextView-->
+        <!--android:id="@+id/restaurant_name"-->
+        <!--android:layout_width="350dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingLeft="35dp"-->
+        <!--android:paddingRight="35dp"-->
+        <!--android:layout_below="@+id/title"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:textSize="20sp"-->
+        <!--android:gravity="left"-->
+        <!--android:textStyle="bold"-->
+        <!--dinr:fontName="MarkBook.otf"/>-->
+
+
+    <!--<com.godynamo.dinr.ui.CustomTextView-->
+        <!--android:id="@+id/restaurant_reservation_time"-->
+        <!--android:layout_width="350dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingLeft="35dp"-->
+        <!--android:paddingRight="35dp"-->
+        <!--android:layout_below="@+id/restaurant_name"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:gravity="left"-->
+        <!--android:textSize="18sp"-->
+        <!--dinr:fontName="MarkBook.otf"/>-->
+
+
+    <!--<com.godynamo.dinr.ui.CustomTextView-->
+        <!--android:id="@+id/restaurant_reservation_details"-->
+        <!--android:layout_width="350dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingLeft="35dp"-->
+        <!--android:paddingRight="35dp"-->
+        <!--android:layout_below="@+id/restaurant_reservation_time"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:gravity="left"-->
+        <!--android:textSize="18sp"-->
+        <!--dinr:fontName="MarkBook.otf"/>-->
+
+
+    <!--<com.godynamo.dinr.ui.CustomTextView-->
+        <!--android:id="@+id/restaurant_address"-->
+        <!--android:layout_width="350dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingTop="30dp"-->
+        <!--android:paddingLeft="35dp"-->
+        <!--android:paddingRight="35dp"-->
+        <!--android:layout_below="@+id/restaurant_reservation_details"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:gravity="left|center_vertical"-->
+        <!--android:drawableLeft="@drawable/icon_marker_white"-->
+        <!--dinr:fontName="MarkBook.otf"/>-->
+
+
+    <!--<com.godynamo.dinr.ui.CustomTextView-->
+        <!--android:id="@+id/restaurant_phone"-->
+        <!--android:layout_width="350dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingLeft="35dp"-->
+        <!--android:paddingRight="35dp"-->
+        <!--android:layout_below="@+id/restaurant_address"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:gravity="left|center_vertical"-->
+        <!--android:drawableLeft="@drawable/icon_phone_white"-->
+        <!--dinr:fontName="MarkBook.otf"/>-->
+
+
+
+
+    <Button
+        android:id="@+id/dialogButtonCancel"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/action_button"
+        android:text="@string/yes_cancel_it"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Button
+        android:id="@+id/dialogButtonNo"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/action_button2"
+        android:textColor="@color/white"
+        android:text="@string/no"
+        android:layout_below="@+id/dialogButtonCancel"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        />
+
+</RelativeLayout>

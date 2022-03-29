@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="com_appboy_push_gcm_messaging_registration_enabled">true</bool>
+
+    <string name="com_appboy_api_key" translatable="false">1b04e29c-5c64-41c5-bedc-3abdedaacc2e</string>
+
+    <string name="com_appboy_push_gcm_sender_id" translatable="false">843749214747</string>
+
+    <drawable name="com_appboy_push_small_notification_icon">@drawable/ic_notif_icon</drawable>
+
+</resources>

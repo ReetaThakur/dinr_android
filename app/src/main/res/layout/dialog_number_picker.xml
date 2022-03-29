@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:dinr="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/gray_topbar"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp">
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/title"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="Please choose party size"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        dinr:fontName="MarkBook.otf"/>
+
+
+    <NumberPicker
+        android:id="@+id/number_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="25dp"/>
+
+
+    <Button
+        android:id="@+id/dialogButtonSelect"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/number_picker"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/action_button"
+        android:text="Select"
+        />
+
+    <Button
+        android:id="@+id/dialogButtonCancelDialog"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/dialogButtonSelect"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/action_button2"
+        android:text="@string/cancel"
+        android:textColor="@color/white"
+        />
+
+</RelativeLayout>

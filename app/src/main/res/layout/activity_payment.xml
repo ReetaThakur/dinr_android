@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/cardNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="42dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/action_button2"
+        android:drawableLeft="@drawable/icon_credit_card"
+        android:hint="@string/credit_card_number"
+        android:inputType="phone"
+        android:maxLength="19"
+        android:nextFocusForward="@+id/date_month"
+        android:nextFocusRight="@+id/date_month"
+        android:nextFocusDown="@+id/date_month"
+        android:paddingLeft="15dp"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/captureCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardNumber"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:clickable="true"
+        android:drawableLeft="@drawable/icon_camera"
+        android:gravity="center_vertical"
+        android:onClick="onScanPress"
+        android:text="@string/scan_your_card"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/phoneNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="42dp"
+        android:layout_below="@+id/dateAndCvvContainer"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/action_button2"
+        android:hint="5141234567"
+        android:inputType="phone"
+        android:paddingLeft="15dp"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+
+    <Button
+        android:id="@+id/book_now_button"
+        android:layout_width="fill_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/action_button_book"
+        android:onClick="submitPayment"
+        android:text="@string/submit" />
+
+    <LinearLayout
+        android:id="@+id/dateAndCvvContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/captureCamera"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/date_month"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/action_button2"
+                android:hint="MM"
+                android:inputType="number"
+                android:maxLength="2"
+                android:nextFocusForward="@+id/date_year"
+                android:nextFocusRight="@+id/date_year"
+                android:nextFocusDown="@+id/date_year"
+                android:paddingLeft="11dp"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:text="/"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+
+            <EditText
+                android:id="@+id/date_year"
+                android:layout_width="62dp"
+                android:layout_height="42dp"
+                android:background="@drawable/action_button2"
+                android:hint="YYYY"
+                android:inputType="number"
+                android:nextFocusForward="@+id/cvv"
+                android:nextFocusRight="@+id/cvv"
+                android:nextFocusDown="@+id/cvv"
+                android:maxLength="4"
+                android:paddingLeft="17dp"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/cvv"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/action_button2"
+            android:nextFocusForward="@+id/phoneNumber"
+            android:nextFocusRight="@+id/phoneNumber"
+            android:nextFocusDown="@+id/phoneNumber"
+            android:hint="CVV"
+            android:inputType="date"
+            android:maxLength="4"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
