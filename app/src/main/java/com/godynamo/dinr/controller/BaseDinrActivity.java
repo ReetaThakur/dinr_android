@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.appboy.Appboy;
+//import com.appboy.Appboy;
+//import com.braze.Braze;
 import com.godynamo.dinr.api.APICaller;
 import com.godynamo.dinr.api.APIWrapper;
 import com.godynamo.dinr.tools.ConnectionDetector;
@@ -48,14 +49,15 @@ public class BaseDinrActivity extends Activity implements APICaller {
     @Override
     protected void onStart() {
         super.onStart();
-        if(Appboy.getInstance(this).openSession(this)){
+       /* if(Appboy.getInstance(this).openSession(this)){
             mRefreshData = true;
-        }
+        }*/
+     //   Braze.getInstance(this).openSession(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Appboy.getInstance(this).closeSession(this);
+      //  Braze.getInstance(this).closeSession(this);
     }
 }

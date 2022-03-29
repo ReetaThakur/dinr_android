@@ -2,7 +2,7 @@ package com.godynamo.dinr.controller;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.appboy.Appboy;
 import com.godynamo.dinr.api.APICaller;
@@ -47,9 +47,9 @@ public class BaseDinrFragmentActivity extends FragmentActivity implements APICal
     @Override
     protected void onStart() {
         super.onStart();
-        if(Appboy.getInstance(this).openSession(this)){
+        /*if(Appboy.getInstance(this).openSession(this)){
             mRefreshData = true;
-        }
+        }*/
     }
 
     @Override

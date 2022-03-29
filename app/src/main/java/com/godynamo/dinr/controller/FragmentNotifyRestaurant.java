@@ -5,15 +5,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
-import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -22,16 +20,11 @@ import com.godynamo.dinr.R;
 import com.godynamo.dinr.api.APICaller;
 import com.godynamo.dinr.api.APIWrapper;
 import com.godynamo.dinr.db.DinrSession;
-import com.godynamo.dinr.model.City;
-import com.godynamo.dinr.model.Opening;
 import com.godynamo.dinr.model.Restaurant;
-import com.godynamo.dinr.ui.ExpandableListAdapter;
 import com.godynamo.dinr.ui.LazyAdapter;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**

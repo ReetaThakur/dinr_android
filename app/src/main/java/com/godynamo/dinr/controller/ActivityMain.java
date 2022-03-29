@@ -7,22 +7,20 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appboy.Appboy;
-import com.appboy.ui.inappmessage.AppboyInAppMessageManager;
+//import com.appboy.ui.inappmessage.AppboyInAppMessageManager;
+import com.braze.ui.inappmessage.BrazeInAppMessageManager;
 import com.godynamo.dinr.R;
 import com.godynamo.dinr.db.DinrSession;
 import com.godynamo.dinr.model.City;
@@ -337,9 +335,9 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
         super.onResume();
         mSimpleFacebook = SimpleFacebook.getInstance(this);
 
-        AppboyInAppMessageManager.getInstance().registerInAppMessageManager(this);
+        BrazeInAppMessageManager.getInstance().registerInAppMessageManager(this);
         if (mRefreshData) {
-            Appboy.getInstance(this).requestInAppMessageRefresh();
+           // Appboy.getInstance(this).requestInAppMessageRefresh();
             mRefreshData = false;
         }
     }
@@ -348,7 +346,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
     protected void onPause() {
         super.onPause();
 
-        AppboyInAppMessageManager.getInstance().unregisterInAppMessageManager(this);
+        BrazeInAppMessageManager.getInstance().unregisterInAppMessageManager(this);
 
     }
 
