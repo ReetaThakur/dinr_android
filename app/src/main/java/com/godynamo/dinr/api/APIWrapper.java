@@ -3,20 +3,17 @@ package com.godynamo.dinr.api;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Entity;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.godynamo.dinr.db.DinrSession;
 import com.godynamo.dinr.model.Cities;
 import com.godynamo.dinr.model.CloseCity;
 import com.godynamo.dinr.model.NotifyRestaurants;
 import com.godynamo.dinr.model.PaymentInfo;
-import com.godynamo.dinr.model.Restaurant;
 import com.godynamo.dinr.model.Restaurants;
 import com.godynamo.dinr.model.User;
 import com.godynamo.dinr.tools.gsonUTCdateAdapter;
@@ -34,8 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.text.DateFormat;
 import java.util.Date;
 
 /**

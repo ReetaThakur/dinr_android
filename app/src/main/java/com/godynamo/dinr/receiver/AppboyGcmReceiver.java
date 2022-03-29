@@ -6,19 +6,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.appboy.Appboy;
 import com.appboy.Constants;
 import com.appboy.IAppboyNotificationFactory;
-import com.appboy.configuration.XmlAppConfigurationProvider;
+//import com.appboy.configuration.XmlAppConfigurationProvider;
 import com.appboy.push.AppboyNotificationActionUtils;
-import com.appboy.push.AppboyNotificationUtils;
-import com.appboy.support.AppboyLogger;
+//import com.appboy.push.AppboyNotificationUtils;
+//import com.appboy.support.AppboyLogger;
 
 public final class AppboyGcmReceiver extends BroadcastReceiver {
-    private static final String TAG = String.format("%s.%s", Constants.APPBOY_LOG_TAG_PREFIX, AppboyGcmReceiver.class.getName());
+    private static final String TAG ="TEST";
+    //private static final String TAG = String.format("%s.%s", Constants.APPBOY_LOG_TAG_PREFIX, AppboyGcmReceiver.class.getName());
     private static final String GCM_RECEIVE_INTENT_ACTION = "com.google.android.c2dm.intent.RECEIVE";
     private static final String GCM_REGISTRATION_INTENT_ACTION = "com.google.android.c2dm.intent.REGISTRATION";
     private static final String GCM_ERROR_KEY = "error";
@@ -31,7 +32,7 @@ public final class AppboyGcmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        AppboyLogger.i(TAG, String.format("Received broadcast message. Message: %s", intent.toString()));
+       /* AppboyLogger.i(TAG, String.format("Received broadcast message. Message: %s", intent.toString()));
         String action = intent.getAction();
         if (GCM_REGISTRATION_INTENT_ACTION.equals(action)) {
             handleRegistrationEventIfEnabled(new XmlAppConfigurationProvider(context), context, intent);
@@ -45,7 +46,7 @@ public final class AppboyGcmReceiver extends BroadcastReceiver {
             AppboyNotificationUtils.handleNotificationOpened(context, intent);
         } else {
             AppboyLogger.w(TAG, String.format("The GCM receiver received a message not sent from Appboy. Ignoring the message."));
-        }
+        }*/
     }
 
     /**
@@ -54,7 +55,7 @@ public final class AppboyGcmReceiver extends BroadcastReceiver {
      * device. Otherwise, it will log an error message and the device will not be able to receive GCM
      * messages.
      */
-    boolean handleRegistrationIntent(Context context, Intent intent) {
+ /*   boolean handleRegistrationIntent(Context context, Intent intent) {
         String error = intent.getStringExtra(GCM_ERROR_KEY);
         String registrationId = intent.getStringExtra(GCM_REGISTRATION_ID_KEY);
 
@@ -75,26 +76,26 @@ public final class AppboyGcmReceiver extends BroadcastReceiver {
                 Log.e(TAG, "The request sent by the device does not contain the expected parameters. This phone does not " +
                         "currently support GCM.");
             } else {
-                AppboyLogger.w(TAG, String.format("Received an unrecognised GCM registration error type. Ignoring. Error: %s", error));
+              //  AppboyLogger.w(TAG, String.format("Received an unrecognised GCM registration error type. Ignoring. Error: %s", error));
             }
         } else if (registrationId != null) {
             Appboy.getInstance(context).registerAppboyPushMessages(registrationId);
         } else if (intent.hasExtra(GCM_UNREGISTERED_KEY)) {
-            Appboy.getInstance(context).unregisterAppboyPushMessages();
+          //  Appboy.getInstance(context).unregisterAppboyPushMessages();
         } else {
-            AppboyLogger.w(TAG, "The GCM registration message is missing error information, registration id, and unregistration " +
+            //AppboyLogger.w(TAG, "The GCM registration message is missing error information, registration id, and unregistration " +
                     "confirmation. Ignoring.");
             return false;
         }
         return true;
     }
 
-    /**
+    *//**
      * Handles both Appboy data push GCM messages and notification messages. Notification messages are
      * posted to the notification center if the GCM message contains a title and body and the payload
      * is sent to the application via an Intent. Data push messages do not post to the notification
      * center, although the payload is forwarded to the application via an Intent as well.
-     */
+     *//*
     boolean handleAppboyGcmMessage(Context context, Intent intent) {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         String messageType = intent.getStringExtra(GCM_MESSAGE_TYPE_KEY);
@@ -103,7 +104,7 @@ public final class AppboyGcmReceiver extends BroadcastReceiver {
             if (totalDeleted == -1) {
                 Log.e(TAG, String.format("Unable to parse GCM message. Intent: %s", intent.toString()));
             } else {
-                AppboyLogger.i(TAG, String.format("GCM deleted %d messages. Fetch them from Appboy.", totalDeleted));
+               // AppboyLogger.i(TAG, String.format("GCM deleted %d messages. Fetch them from Appboy.", totalDeleted));
             }
             return false;
         } else {
@@ -152,10 +153,10 @@ public final class AppboyGcmReceiver extends BroadcastReceiver {
         }
     }
 
-    /**
+    *//**
      * Runs the handleAppboyGcmMessage method in a background thread in case of an image push
      * notification, which cannot be downloaded on the main thread.
-     */
+     *//*
     public class HandleAppboyGcmMessageTask extends AsyncTask<Void, Void, Void> {
         private final Context context;
         private final Intent intent;
@@ -188,5 +189,5 @@ public final class AppboyGcmReceiver extends BroadcastReceiver {
         }
         return false;
     }
-}
+*/}
 

@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -18,10 +18,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.godynamo.dinr.R;
-import com.godynamo.dinr.api.APIWrapper;
 import com.godynamo.dinr.api.EndPointUrl;
 import com.godynamo.dinr.db.DinrSession;
-import com.godynamo.dinr.model.NotifyRestaurants;
 import com.godynamo.dinr.model.Opening;
 import com.godynamo.dinr.model.Restaurant;
 import com.godynamo.dinr.ui.ConfirmReservationDialog;
