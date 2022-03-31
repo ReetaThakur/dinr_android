@@ -1,5 +1,7 @@
 package com.godynamo.dinr.api;
 
+import android.util.Log;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -20,6 +22,7 @@ public class DinrClient {
                 .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
         client.removeHeader("X-HTTP-Method-Override");
         client.setUserAgent("android-async-http/1.4.4 (http://loopj.com/android-async-http)");
+        Log.e("Restaurants get ","url "+url+" params "+params+" ");
         client.get(url, params, responseHandler);
     }
 

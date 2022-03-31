@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.util.Log;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -31,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -362,9 +365,9 @@ public class APIWrapper {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
 
-                if(statusCode == 200){
+                if (statusCode == 200) {
                     mainClass.onSuccess(null, EndPointUrl.DINR_EVENT_PASSWORD_RESET);
-                }else{
+                } else {
                     mainClass.onFailure(null, EndPointUrl.DINR_EVENT_PASSWORD_RESET);
                 }
             }
@@ -441,6 +444,7 @@ public class APIWrapper {
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                     DinrSession.getInstance().setRestaurants(gson.fromJson(response.toString(), Restaurants.class));
 
+                    Log.e("Restaurants onSuccess ", "headers " + Arrays.toString(headers) + " response " + response + " gson " + gson);
                     mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_GET_ALL_RESTAURANTS);
                 }
 

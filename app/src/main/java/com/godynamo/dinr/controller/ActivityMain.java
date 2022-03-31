@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.os.Bundle;
+
 import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -26,10 +28,10 @@ import com.godynamo.dinr.db.DinrSession;
 import com.godynamo.dinr.model.City;
 import com.godynamo.dinr.ui.DialogListAdapter;
 import com.godynamo.dinr.ui.TabsPagerAdapter;
-import com.sromku.simple.fb.Permission;
-import com.sromku.simple.fb.SimpleFacebook;
-import com.sromku.simple.fb.SimpleFacebookConfiguration;
-import com.sromku.simple.fb.listeners.OnLoginListener;
+//import com.sromku.simple.fb.Permission;
+//import com.sromku.simple.fb.SimpleFacebook;
+//import com.sromku.simple.fb.SimpleFacebookConfiguration;
+//import com.sromku.simple.fb.listeners.OnLoginListener;
 
 import org.json.JSONObject;
 
@@ -51,27 +53,27 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
     public boolean location = false;
 
-    private SimpleFacebook mSimpleFacebook;
+  //  private SimpleFacebook mSimpleFacebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Permission[] permissions = new Permission[] {
+       /* Permission[] permissions = new Permission[]{
                 Permission.EMAIL
-        };
+        };*/
 
 
-        SimpleFacebookConfiguration configuration = new SimpleFacebookConfiguration.Builder()
+     /*   SimpleFacebookConfiguration configuration = new SimpleFacebookConfiguration.Builder()
                 .setAppId(this.getResources().getString(R.string.app_id))
                 .setNamespace(DinrSession.PREFS_NAME)
                 .setPermissions(permissions)
                 .build();
 
-        SimpleFacebook.setConfiguration(configuration);
+        SimpleFacebook.setConfiguration(configuration);*/
 
-        if(DinrSession.getInstance().getUser(this) != null) {
+        if (DinrSession.getInstance().getUser(this) != null) {
             Appboy.getInstance(this).changeUser("" + DinrSession.getInstance().getUser(this).getId());
             Appboy.getInstance(this).getCurrentUser().setEmail(DinrSession.getInstance().getUser(this).getEmail());
             Appboy.getInstance(this).getCurrentUser().setFirstName(DinrSession.getInstance().getUser(this).getFirstName());
@@ -112,9 +114,9 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
         });
 
 
-        if(DinrSession.getInstance().getSelectedCity() == null){
+        if (DinrSession.getInstance().getSelectedCity() == null) {
 
-            if(DinrSession.getInstance().getCities(this) == null){
+            if (DinrSession.getInstance().getCities(this) == null) {
 
                 Intent intent = new Intent(this, ActivitySplash.class);
                 startActivity(intent);
@@ -128,19 +130,20 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
 
         LocationManager lm = null;
-        boolean gps_enabled = false,network_enabled = false;
-        if(lm==null)
+        boolean gps_enabled = false, network_enabled = false;
+        if (lm == null)
             lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        try{
+        try {
             gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        }catch(Exception ex){}
-        try{
+        } catch (Exception ex) {
+        }
+        try {
             network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        }catch(Exception ex){
+        } catch (Exception ex) {
 
         }
 
-        if(!gps_enabled && !network_enabled){
+        if (!gps_enabled && !network_enabled) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(this);
             dialog.setMessage("Please enable your location services!");
             dialog.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
@@ -148,7 +151,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
                 @Override
                 public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                     // TODO Auto-generated method stub
-                    Intent myIntent = new Intent( android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    Intent myIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivity(myIntent);
 
                     location = true;
@@ -164,8 +167,6 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
                 }
             });
             dialog.show();
-
-
 
 
         }
@@ -192,7 +193,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
                     signOutButton.setVisibility(View.INVISIBLE);
 
-                }  else if (position == 1) { // Notify me
+                } else if (position == 1) { // Notify me
                     actionBar.getTabAt(0).setIcon(R.drawable.icon_restaurant_white);
                     actionBar.getTabAt(1).setIcon(R.drawable.icon_favorites_yellow);
                     actionBar.getTabAt(2).setIcon(R.drawable.icon_map_white);
@@ -202,7 +203,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
                     signOutButton.setVisibility(View.INVISIBLE);
 
-                }else if (position == 2) { // map
+                } else if (position == 2) { // map
                     actionBar.getTabAt(0).setIcon(R.drawable.icon_restaurant_white);
                     actionBar.getTabAt(1).setIcon(R.drawable.icon_favorites_white);
                     actionBar.getTabAt(2).setIcon(R.drawable.icon_map_yellow);
@@ -212,7 +213,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
                     signOutButton.setVisibility(View.INVISIBLE);
 
-                }else if (position == 3) { // Account
+                } else if (position == 3) { // Account
 
                     actionBar.getTabAt(0).setIcon(R.drawable.icon_restaurant_white);
                     actionBar.getTabAt(1).setIcon(R.drawable.icon_favorites_white);
@@ -237,25 +238,25 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
     }
 
-    public void updateMap(){
-        if(mAdapter != null) {
+    public void updateMap() {
+        if (mAdapter != null) {
             mAdapter.updateMap();
         }
     }
 
-    public void refreshData(){
-        if(mAdapter != null){
+    public void refreshData() {
+        if (mAdapter != null) {
             mAdapter.updateRestaurants();
         }
     }
 
-    public void fetchRestaurants(){
-        if(mAdapter != null){
+    public void fetchRestaurants() {
+        if (mAdapter != null) {
             mAdapter.fetchRestaurants();
         }
     }
 
-    public void goToAccount(){
+    public void goToAccount() {
         actionBar.setSelectedNavigationItem(3);
     }
 
@@ -286,12 +287,12 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
     }
 
-    public void LoginFacebook(){
-        OnLoginListener onLoginListener = new OnLoginListener() {
+    public void LoginFacebook() {
+      /*  OnLoginListener onLoginListener = new OnLoginListener() {
             @Override
             public void onLogin() {
                 // change the state of the button or do whatever you want
-                mAdapter.facebookLogin(mSimpleFacebook.getSession().getAccessToken());
+               // mAdapter.facebookLogin(mSimpleFacebook.getSession().getAccessToken());
             }
 
             @Override
@@ -316,28 +317,26 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
             }
         };
 
-        mSimpleFacebook.login(onLoginListener);
+        mSimpleFacebook.login(onLoginListener);*/
 
     }
-
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mSimpleFacebook.onActivityResult(this, requestCode, resultCode, data);
+        //mSimpleFacebook.onActivityResult(this, requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
-
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        mSimpleFacebook = SimpleFacebook.getInstance(this);
+       // mSimpleFacebook = SimpleFacebook.getInstance(this);
 
         BrazeInAppMessageManager.getInstance().registerInAppMessageManager(this);
         if (mRefreshData) {
-           // Appboy.getInstance(this).requestInAppMessageRefresh();
+            // Appboy.getInstance(this).requestInAppMessageRefresh();
             mRefreshData = false;
         }
     }
@@ -350,9 +349,8 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
     }
 
-    private void logOut(){
+    private void logOut() {
         DinrSession.getInstance().logOut(this);
-
 
 
         Intent intent = new Intent(this, ActivitySplash.class);
@@ -362,7 +360,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
     }
 
 
-    private void showListDialog(final ArrayList<City> cities){
+    private void showListDialog(final ArrayList<City> cities) {
 
         View viewList = this.getLayoutInflater().inflate(R.layout.dialog_list, null);
         dialogMarketList = new Dialog(this);
@@ -392,7 +390,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
     public void onBackPressed() {
         // 3 is equal to the Account Fragment
         // this hole system would need to be rebuild.
-        if(viewPager.getCurrentItem() == 3) {
+        if (viewPager.getCurrentItem() == 3) {
             mAdapter.OnBackFragmentAcount();
             return;
         }

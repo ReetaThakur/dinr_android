@@ -18,9 +18,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.facebook.Session;
+/*import com.facebook.Session;
 import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
+import com.facebook.UiLifecycleHelper;*/
 import com.godynamo.dinr.R;
 import com.godynamo.dinr.api.APICaller;
 import com.godynamo.dinr.api.APIWrapper;
@@ -64,7 +64,7 @@ public class FragmentAcount extends Fragment implements APICaller {
 
     private APIWrapper wrapper;
 
-    private UiLifecycleHelper uiHelper;
+   // private UiLifecycleHelper uiHelper;
 
 
     @Override
@@ -171,8 +171,8 @@ public class FragmentAcount extends Fragment implements APICaller {
             }
         };
 
-        uiHelper = new UiLifecycleHelper(getActivity(), statusCallback);
-        uiHelper.onCreate(savedInstanceState);
+      //  uiHelper = new UiLifecycleHelper(getActivity(), statusCallback);
+     //   uiHelper.onCreate(savedInstanceState);
 
         //Login Chooser
         signUpButton = (Button) rootView.findViewById(R.id.btn_sign_up_login);
@@ -291,7 +291,7 @@ public class FragmentAcount extends Fragment implements APICaller {
         }
     }
 
-    private Session.StatusCallback statusCallback = new Session.StatusCallback() {
+  /*  private Session.StatusCallback statusCallback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
 
@@ -299,7 +299,7 @@ public class FragmentAcount extends Fragment implements APICaller {
             } else if (state.isClosed()) {
             }
         }
-    };
+    };*/
 
     @Override
     public void onSuccess(JSONObject obj, String event) {
