@@ -17,8 +17,8 @@ import com.godynamo.dinr.api.EndPointUrl;
 import com.godynamo.dinr.db.DinrSession;
 import com.godynamo.dinr.ui.ErrorDialog;
 
-import org.apache.http.entity.StringEntity;
-import org.apache.http.protocol.HTTP;
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.protocol.HTTP;
 import org.json.JSONObject;
 
 

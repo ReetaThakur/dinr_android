@@ -8,7 +8,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.client.params.ClientPNames;
-import org.apache.http.entity.StringEntity;
+
+import cz.msebera.android.httpclient.HttpEntity;
 
 /**
  * Created by dankovassev on 14-11-27.
@@ -18,55 +19,49 @@ public class DinrClient {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.getHttpClient().getParams()
-                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+      //  client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
         client.removeHeader("X-HTTP-Method-Override");
         client.setUserAgent("android-async-http/1.4.4 (http://loopj.com/android-async-http)");
-        Log.e("Restaurants get ","url "+url+" params "+params+" ");
+        Log.e("Restaurants get ", "url " + url + " params " + params + " ");
         client.get(url, params, responseHandler);
     }
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.getHttpClient().getParams()
-                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+       // client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
         client.removeHeader("X-HTTP-Method-Override");
         client.setUserAgent("android-async-http/1.4.4 (http://loopj.com/android-async-http)");
         client.post(null, url, null, params, "application/json", responseHandler);
     }
 
 
-    public static void put(String request, StringEntity entity,
+    public static void put(String request, HttpEntity entity,
                            JsonHttpResponseHandler responseHandler) {
-        client.getHttpClient().getParams()
-                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+       // client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
 
         client.removeHeader("X-HTTP-Method-Override");
         client.setUserAgent("android-async-http/1.4.4 (http://loopj.com/android-async-http)");
-        client.put(null,request,entity, "application/json",responseHandler);
+        client.put(null, request, entity, "application/json", responseHandler);
     }
 
-    public static void post(String request, StringEntity entity, JsonHttpResponseHandler responseHandler) {
-        client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+    public static void post(String request, HttpEntity entity, JsonHttpResponseHandler responseHandler) {
+      //  client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
 
         client.removeHeader("X-HTTP-Method-Override");
         client.setUserAgent("android-async-http/1.4.4 (http://loopj.com/android-async-http)");
-        client.post(null,request, entity, "application/json",responseHandler);
-
+        client.post(null, request, entity, "application/json", responseHandler);
     }
 
     public static void delete(String request, JsonHttpResponseHandler responseHandler) {
-        client.getHttpClient().getParams()
-                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+       // client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
 
         client.removeHeader("X-HTTP-Method-Override");
         client.setUserAgent("android-async-http/1.4.4 (http://loopj.com/android-async-http)");
         client.delete(request, responseHandler);
     }
 
-    public static void patch(String request, StringEntity entity,
+    public static void patch(String request, HttpEntity entity,
                              JsonHttpResponseHandler responseHandler) {
-        client.getHttpClient().getParams()
-                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+      //  client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
 
         client.addHeader("X-HTTP-Method-Override", "PATCH");
         client.setUserAgent("android-async-http/1.4.4 (http://loopj.com/android-async-http)");

@@ -18,8 +18,8 @@ import com.godynamo.dinr.tools.ExpiryValidator;
 import com.godynamo.dinr.ui.ErrorDialog;
 import com.godynamo.dinr.ui.SuccessDialog;
 
-import org.apache.http.entity.StringEntity;
-import org.apache.http.protocol.HTTP;
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.protocol.HTTP;
 import org.json.JSONObject;
 
 import io.card.payment.CardIOActivity;

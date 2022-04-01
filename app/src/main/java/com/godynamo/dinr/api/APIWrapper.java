@@ -23,11 +23,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.apache.http.Header;
-import org.apache.http.entity.StringEntity;
+/*import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;*/
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpEntity;
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.protocol.HTTP;
 
 
-import org.apache.http.protocol.HTTP;
+//import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -77,7 +81,7 @@ public class APIWrapper {
     }
 
 
-    public void sendPaymentInfo(String userID, StringEntity entity) throws JSONException, UnsupportedEncodingException {
+    public void sendPaymentInfo(String userID, HttpEntity entity) throws JSONException, UnsupportedEncodingException {
 
         String path = String.format(EndPointUrl.DINR_CREATE_UPDATE_USER_PAYMENT, userID) + "?user_token=" + DinrSession.getInstance().getUser(mContext).getToken();
 
@@ -165,7 +169,7 @@ public class APIWrapper {
         });
     }
 
-    public void reserveRestaurant(String restaurantID, StringEntity entity) throws JSONException, UnsupportedEncodingException {
+    public void reserveRestaurant(String restaurantID, HttpEntity entity) throws JSONException, UnsupportedEncodingException {
 
         String path = String.format(EndPointUrl.DINR_RETRIVE_RESTAURANT_RESERVATIONS, "" + restaurantID) + "?user_token" + DinrSession.getInstance().getUser(mContext).getToken();
 
@@ -192,7 +196,7 @@ public class APIWrapper {
         });
     }
 
-    public void signUpWithFacebook(StringEntity entity) throws JSONException, UnsupportedEncodingException {
+    public void signUpWithFacebook(HttpEntity entity) throws JSONException, UnsupportedEncodingException {
 
         String path = EndPointUrl.DINR_AUTHENTICATE_USER_FACEBOOK;
 
@@ -240,7 +244,7 @@ public class APIWrapper {
     }
 
     //Resend Confirmation
-    public void signInWithEmail(StringEntity entity) throws JSONException, UnsupportedEncodingException {
+    public void signInWithEmail(HttpEntity entity) throws JSONException, UnsupportedEncodingException {
 
         String path = EndPointUrl.DINR_AUTHENTICATE_USER;
 
@@ -308,7 +312,7 @@ public class APIWrapper {
         });
     }
 
-    public void signUp(StringEntity entity) throws JSONException, UnsupportedEncodingException {
+    public void signUp(HttpEntity entity) throws JSONException, UnsupportedEncodingException {
 
         String path = EndPointUrl.DINR_CREATE_USER;
         DinrClient.post(path, entity, new JsonHttpResponseHandler() {
@@ -340,7 +344,7 @@ public class APIWrapper {
         });
     }
 
-    public void resetPassword(StringEntity entity) throws JSONException, UnsupportedEncodingException {
+    public void resetPassword(HttpEntity entity) throws JSONException, UnsupportedEncodingException {
 
         String path = EndPointUrl.DINR_RESET_PASSWORD;
 
@@ -503,37 +507,33 @@ public class APIWrapper {
 
         String path = String.format(EndPointUrl.DINR_FAVORITE_RESTAURANT, userID) + "?user_token=" + DinrSession.getInstance().getUser(mContext).getToken() + "&id=" + restaurantID;
 
-        try {
-            StringEntity entity = new StringEntity("", HTTP.UTF_8);
+        HttpEntity entity = new StringEntity("", HTTP.UTF_8);
 
-            DinrClient.post(path, entity, new JsonHttpResponseHandler() {
+        DinrClient.post(path, entity, new JsonHttpResponseHandler() {
 
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    super.onSuccess(statusCode, headers, response);
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
 
-                    mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
+                mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
 
-                }
+            }
 
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse) {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse) {
 
-                    mainClass.onSuccess(null, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
-                }
+                mainClass.onSuccess(null, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
+            }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    super.onFailure(statusCode, headers, throwable, errorResponse);
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
 
-                    mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
+                mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
 
-                }
-            });
+            }
+        });
 
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
     }
 
     public void deleteFavoriteRestaurant(String userID, int restaurantID) {
