@@ -67,7 +67,6 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
 
         markers = new ArrayList<Marker>();
 
-
         return v;
     }
 
@@ -148,8 +147,8 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
                 if (DinrSession.getInstance().getSelectedCity().getLatitude() != null &&
                         DinrSession.getInstance().getSelectedCity().getLongitude() != null) {
 
-                    Double cityLat = Double.valueOf(DinrSession.getInstance().getSelectedCity().getLatitude());
-                    Double cityLong = Double.valueOf(DinrSession.getInstance().getSelectedCity().getLongitude());
+                    double cityLat = Double.parseDouble(DinrSession.getInstance().getSelectedCity().getLatitude());
+                    double cityLong = Double.parseDouble(DinrSession.getInstance().getSelectedCity().getLongitude());
 
                     CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(new LatLng(cityLat, cityLong), 10);
                     map.moveCamera(cu);
@@ -202,8 +201,8 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
 
                         if (DinrSession.getInstance().getSelectedCity() != null) {
 
-                            Double cityLat = Double.valueOf(DinrSession.getInstance().getSelectedCity().getLatitude());
-                            Double cityLong = Double.valueOf(DinrSession.getInstance().getSelectedCity().getLongitude());
+                            double cityLat = Double.parseDouble(DinrSession.getInstance().getSelectedCity().getLatitude());
+                            double cityLong = Double.parseDouble(DinrSession.getInstance().getSelectedCity().getLongitude());
 
                             CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(new LatLng(cityLat, cityLong), 10);
                             map.moveCamera(cu);
@@ -236,8 +235,8 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
 
                 if (DinrSession.getInstance().getSelectedCity() != null) {
 
-                    Double cityLat = Double.valueOf(DinrSession.getInstance().getSelectedCity().getLatitude());
-                    Double cityLong = Double.valueOf(DinrSession.getInstance().getSelectedCity().getLongitude());
+                    double cityLat = Double.parseDouble(DinrSession.getInstance().getSelectedCity().getLatitude());
+                    double cityLong = Double.parseDouble(DinrSession.getInstance().getSelectedCity().getLongitude());
 
                     CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(new LatLng(cityLat, cityLong), 10);
                     map.moveCamera(cu);
@@ -261,7 +260,7 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
+//209123484908
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
                 // If request is cancelled, the result arrays are empty.
