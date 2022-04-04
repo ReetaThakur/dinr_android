@@ -26,7 +26,9 @@ android {
 
         debug {
             minifyEnabled false
-            buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.com/api/v1\""
+            //https://staging.getdinr.com/api/v1
+            //https://private-anon-6d43589377-dinrbryan.apiary-mock.com
+            buildConfigField "String", "URL_ROOT", "\"https://private-anon-6d43589377-dinrbryan.apiary-mock.com\""
         }
 
     }

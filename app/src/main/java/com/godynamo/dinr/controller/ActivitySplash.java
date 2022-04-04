@@ -9,9 +9,12 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import android.util.Log;
 import android.widget.VideoView;
 
 import com.godynamo.dinr.R;
@@ -70,16 +73,17 @@ public class ActivitySplash extends BaseDinrActivity {
             e.printStackTrace();
         }
 
+        Log.e("Splash ", "onCreate: perm");
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_ACCESS_FINE_LOCATION);
-        }else {
-            prepareApp();
+        } else {
+            Log.e("Splash ", "onCreate: perm ok");
 
-            System.out.println("VVV PREPARE APP");
+            prepareApp();
         }
     }
 
-    private void prepareApp(){
+    private void prepareApp() {
 
         new AsyncTask<Void, Void, Void>() {
 
@@ -130,7 +134,7 @@ public class ActivitySplash extends BaseDinrActivity {
     protected void onPause() {
         super.onPause();
 
-        if(backgroundVideo.isPlaying()) {
+        if (backgroundVideo.isPlaying()) {
             backgroundVideo.pause();
         }
     }
@@ -139,7 +143,7 @@ public class ActivitySplash extends BaseDinrActivity {
     protected void onResume() {
         super.onResume();
 
-        if(!backgroundVideo.isPlaying()){
+        if (!backgroundVideo.isPlaying()) {
             backgroundVideo.resume();
         }
     }
@@ -147,7 +151,7 @@ public class ActivitySplash extends BaseDinrActivity {
     @Override
     public void onSuccess(JSONObject obj, String event) {
 
-
+        Log.e("Splash ", "onCreate: perm success");
         if (event.equalsIgnoreCase(EndPointUrl.DINR_EVENT_GET_CLOCEST_CITY)) {
             wrapper.Restaurants();
         }

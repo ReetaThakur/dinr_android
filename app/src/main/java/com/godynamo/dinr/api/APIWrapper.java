@@ -62,7 +62,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-
+                Log.e("cancelReservation onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_RESTAURANT_CANCEL_RESERVATION);
             }
 
@@ -72,6 +72,7 @@ public class APIWrapper {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
 
                 JSONObject jsonObj = new JSONObject();
+                Log.e("cancelReservation onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_RESTAURANT_CANCEL_RESERVATION);
             }
@@ -90,6 +91,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Log.e("sendPaymentInfo onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_CREATE_UPDATE_USER_PAYMENT);
 
@@ -99,6 +101,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("sendPaymentInfo onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_CREATE_UPDATE_USER_PAYMENT);
 
@@ -116,6 +119,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Log.e("getLastReservation onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_RETRIEVE_RESERVATION_TONIGHT);
 
@@ -124,6 +128,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("getLastReservation onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_RETRIEVE_RESERVATION_TONIGHT);
 
@@ -149,6 +154,7 @@ public class APIWrapper {
                     JSONObject user = (JSONObject) response.get("paymentInfo");
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                     DinrSession.getInstance().setPaymentInfo(gson.fromJson(user.toString(), PaymentInfo.class));
+                    Log.e("getPaymentInfo onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response + "\ngson" + gson);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -161,6 +167,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("getPaymentInfo onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_RETRIEVE_USER_PAYMENT);
 
@@ -180,6 +187,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Log.e("reserveRestaurant onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_RESTAURANT_RESERVATION);
 
@@ -188,22 +196,17 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("reserveRestaurant onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_RESTAURANT_RESERVATION);
             }
-
-
         });
     }
 
     public void signUpWithFacebook(HttpEntity entity) throws JSONException, UnsupportedEncodingException {
 
         String path = EndPointUrl.DINR_AUTHENTICATE_USER_FACEBOOK;
-
-
         DinrClient.post(path, entity, new JsonHttpResponseHandler() {
-
-
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
@@ -212,6 +215,7 @@ public class APIWrapper {
                     JSONObject user = (JSONObject) response.get("user");
 
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
+                    Log.e("signUpWithFacebook onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response + "\ngson" + gson);
 
                     DinrSession.getInstance().setUser(mContext, gson.fromJson(user.toString(), User.class));
 
@@ -229,17 +233,17 @@ public class APIWrapper {
 
                 // If no corresponding registration exists, the request will return 422 Unprocessable Entity, and an (incomplete) JSON representation of the registration.
                 if (statusCode == 422) {
+                    Log.e("signUpWithFacebook onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                     mainClass.onSuccess(errorResponse, EndPointUrl.DINR_EVENT_AUTHENTICATE_USER_FACEBOOK);
 
                 } else {
+                    Log.e("signUpWithFacebook onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                     // If the access-token doesn't work, the request will return 401 Unauthorized, with an empty JSON object in the response body.
                     mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_AUTHENTICATE_USER_FACEBOOK);
                 }
             }
-
-
         });
     }
 
@@ -259,6 +263,7 @@ public class APIWrapper {
                     JSONObject user = (JSONObject) response.get("user");
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                     DinrSession.getInstance().setUser(mContext, gson.fromJson(user.toString(), User.class));
+                    Log.e("signInWithEmail onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response + "\ngson" + gson);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -271,6 +276,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("signInWithEmail onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_AUTHENTICATE_USER_EMAIL);
             }
@@ -280,9 +286,7 @@ public class APIWrapper {
 
     //Resend Confirmation
     public void loadUser(int id, String token) throws JSONException, UnsupportedEncodingException {
-
         String path = String.format(EndPointUrl.DINR_USER, "" + id);
-
         DinrClient.get(path, null, new JsonHttpResponseHandler() {
 
             @Override
@@ -290,11 +294,10 @@ public class APIWrapper {
                 super.onSuccess(statusCode, headers, response);
 
                 try {
-
-
                     JSONObject user = (JSONObject) response.get("user");
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                     DinrSession.getInstance().setUser(mContext, gson.fromJson(user.toString(), User.class));
+                    Log.e("loadUser onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response + "\ngson" + gson);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -305,6 +308,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("loadUser onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_AUTHENTICATE_USER_FACEBOOK);
             }
@@ -324,6 +328,8 @@ public class APIWrapper {
                 try {
                     JSONObject user = (JSONObject) response.get("user");
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
+                    Log.e("signUp onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response + "\ngson" + gson);
+
                     DinrSession.getInstance().setUser(mContext, gson.fromJson(user.toString(), User.class));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -336,6 +342,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("signUp onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_CREATE_USER);
 
@@ -353,6 +360,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Log.e("resetPassword onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_PASSWORD_RESET);
             }
@@ -361,6 +369,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("resetPassword onFailure 1 ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_PASSWORD_RESET);
             }
@@ -368,6 +377,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
+                Log.e("resetPassword onFailure 2 ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + responseString);
 
                 if (statusCode == 200) {
                     mainClass.onSuccess(null, EndPointUrl.DINR_EVENT_PASSWORD_RESET);
@@ -379,6 +389,8 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("resetPassword onFailure 3 ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
+
             }
 
         });
@@ -394,6 +406,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Log.e("signOut onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_USER_SIGN_OUT);
 
@@ -402,6 +415,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("signOut onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_AUTHENTICATE_USER_FACEBOOK);
 
@@ -430,15 +444,18 @@ public class APIWrapper {
             if (location != null) {
 
                 path = EndPointUrl.DINR_LIST_ALL_RESTAURANTS_CLOSEST + "?lat=" + location.getLatitude() + "&lng=" + location.getLongitude();
-
+                Log.e("IN A ", "?lat=" + location.getLatitude() + "&lng=" + location.getLongitude());
             } else {
                 path = EndPointUrl.DINR_LIST_ALL_RESTAURANTS_CLOSEST + "?lat=45.5288714" + "&lng=-73.6137561";
+                Log.e("IN A ", "?lat=45.5288714" + "&lng=-73.6137561");
             }
 
             if (DinrSession.getInstance().getSelectedCity() != null) {
                 path += "&city_id=" + DinrSession.getInstance().getSelectedCity().getId();
+                Log.e("IN B ", "city_id" + DinrSession.getInstance().getSelectedCity().getId());
             }
 
+            String finalPath = path;
             DinrClient.get(path, null, new JsonHttpResponseHandler() {
 
                 @Override
@@ -448,14 +465,14 @@ public class APIWrapper {
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                     DinrSession.getInstance().setRestaurants(gson.fromJson(response.toString(), Restaurants.class));
 
-                    Log.e("Restaurants onSuccess ", "headers " + Arrays.toString(headers) + " response " + response + " gson " + gson);
+                    Log.e("Restaurants onSuccess ", "path" + finalPath + "\nheaders " + Arrays.toString(headers) + " \nresponse " + response + " \ngson " + gson);
                     mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_GET_ALL_RESTAURANTS);
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     super.onFailure(statusCode, headers, throwable, errorResponse);
-
+                    Log.e("Restaurants onFailure ", "path" + finalPath + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
                     mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_GET_ALL_RESTAURANTS);
                 }
 
@@ -486,6 +503,7 @@ public class APIWrapper {
                 Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                 DinrSession.getInstance().setNotifyRestaurants(gson.fromJson(response.toString(), NotifyRestaurants.class));
 
+                Log.e("getNotifyRestaurants onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response + "\ngson" + gson);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_GET_NOTIFY_RESTAURANTS);
 
@@ -494,6 +512,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("getNotifyRestaurants onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_GET_NOTIFY_RESTAURANTS);
@@ -514,6 +533,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Log.e("setFavoriteRestaurant onSuccess 1 ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
 
@@ -521,6 +541,7 @@ public class APIWrapper {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray arrayResponse) {
+                Log.e("setFavoriteRestaurant onSuccess 2 ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + arrayResponse);
 
                 mainClass.onSuccess(null, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
             }
@@ -528,6 +549,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("setFavoriteRestaurant onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_SET_NOTIFY_RESTAURANT);
 
@@ -545,6 +567,7 @@ public class APIWrapper {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                Log.e("deleteFavoriteRestaurant onSuccess ", "path " + path + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_REMOVE_NOTIFY_RASTAURANT);
 
@@ -554,6 +577,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("deleteFavoriteRestaurant onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_REMOVE_NOTIFY_RASTAURANT);
 
@@ -572,6 +596,7 @@ public class APIWrapper {
 
                 Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                 DinrSession.getInstance().setCities(mContext, gson.fromJson(response.toString(), Cities.class));
+                Log.e("getCities onSuccess ", "path " + path + " \nheaders " + " \nresponse " + response + "\ngson" + gson);
 
                 mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_GET_CITIES);
             }
@@ -579,6 +604,7 @@ public class APIWrapper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.e("getCities onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + " \nerrorResponse " + errorResponse);
 
                 mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_GET_CITIES);
             }
@@ -608,6 +634,7 @@ public class APIWrapper {
                 path += "?lat=45.5288714" + "&lng=-73.6137561";
             }
 
+            String finalPath = path;
             DinrClient.get(path, null, new JsonHttpResponseHandler() {
 
                 @Override
@@ -616,6 +643,7 @@ public class APIWrapper {
 
                     Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new gsonUTCdateAdapter()).create();
                     DinrSession.getInstance().setSelectedCity(gson.fromJson(response.toString(), CloseCity.class).getCity());
+                    Log.e("getClosestCity onSuccess ", "path " + finalPath + " \nheaders " + Arrays.toString(headers) + " \nresponse " + response + "\ngson" + gson);
 
                     mainClass.onSuccess(response, EndPointUrl.DINR_EVENT_GET_CLOCEST_CITY);
                 }
@@ -623,6 +651,7 @@ public class APIWrapper {
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     super.onFailure(statusCode, headers, throwable, errorResponse);
+                    Log.e("getClosestCity onFailure ", "path" + finalPath + "\nstatusCode" + statusCode + "\nheaders " + Arrays.toString(headers) + " \nerrorResponse " + errorResponse);
 
                     mainClass.onFailure(errorResponse, EndPointUrl.DINR_EVENT_GET_CLOCEST_CITY);
                 }
