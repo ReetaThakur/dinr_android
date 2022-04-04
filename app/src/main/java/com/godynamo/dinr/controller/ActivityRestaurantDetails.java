@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
@@ -22,6 +23,7 @@ import com.godynamo.dinr.api.EndPointUrl;
 import com.godynamo.dinr.db.DinrSession;
 import com.godynamo.dinr.model.Opening;
 import com.godynamo.dinr.model.Restaurant;
+import com.godynamo.dinr.tools.Utils;
 import com.godynamo.dinr.ui.ConfirmReservationDialog;
 import com.godynamo.dinr.ui.ConfirmReservationNumberDialog;
 import com.godynamo.dinr.ui.ErrorDialog;
@@ -30,9 +32,11 @@ import com.godynamo.dinr.ui.RestaurantDetailsPagerAdapter;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.protocol.HTTP;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -243,12 +247,22 @@ public class ActivityRestaurantDetails extends BaseDinrActivity {
                     final String restaurantName = restaurant.getName();
 
                     restaurantReservationTime = "";
+                    String startTime = null, endTime = null;
+                    if (opening.getStart_time() != null)
+                        startTime = Utils.getTimeFromDate(opening.getStart_time());
 
-                    if (opening.getEnd_time() == null) {
+                    if (opening.getEnd_time() != null)
+                        endTime = Utils.getTimeFromDate(opening.getEnd_time());
+
+                    if (startTime != null && endTime != null)
+                        restaurantReservationTime = startTime + " to " + endTime;
+                    else if (startTime != null)
+                        restaurantReservationTime = startTime;
+                    /*if (opening.getEnd_time() == null) {
                         restaurantReservationTime = String.format("%02d", opening.getStart_time().getHours()) + ":" + String.format("%02d", opening.getStart_time().getMinutes());
                     } else {
                         restaurantReservationTime = String.format("%02d", opening.getStart_time().getHours()) + ":" + String.format("%02d", opening.getStart_time().getMinutes()) + " to " + String.format("%02d", opening.getEnd_time().getHours()) + ":" + String.format("%02d", opening.getEnd_time().getMinutes());
-                    }
+                    }*/
 
                     final String restaurantReservationDetails = opening.getTable_type();
                     final String restaurantAddress = restaurant.getStreetAddress();

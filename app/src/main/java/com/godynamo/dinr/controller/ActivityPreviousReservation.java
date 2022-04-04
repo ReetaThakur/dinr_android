@@ -94,7 +94,6 @@ public class ActivityPreviousReservation extends BaseDinrActivity {
 
             try {
 
-
                 if (((JSONArray) obj.get("restaurant")).length() > 0) {
 
                     final JSONObject reservedRestaurant = ((JSONArray) obj.get("restaurant")).getJSONObject(0);

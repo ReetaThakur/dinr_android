@@ -1,6 +1,7 @@
 package com.godynamo.dinr.tools;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -28,7 +29,7 @@ public class Utils {
         final int buffer_size = 1024;
         try {
             byte[] bytes = new byte[buffer_size];
-            for (;;) {
+            for (; ; ) {
                 int count = is.read(bytes, 0, buffer_size);
                 if (count == -1)
                     break;
@@ -170,20 +171,26 @@ public class Utils {
             return Boolean.FALSE;
         }
     }
+
     /***
      * To
      */
-    public static String toCapitalize(String enter)
-    {
+    public static String toCapitalize(String enter) {
         String retour = enter.substring(0, 1).toUpperCase(Locale.US)
                 + enter.substring(1);
         return retour;
     }
 
-    public static String getCountryCarrier(Context context)
-    {
+    public static String getCountryCarrier(Context context) {
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String carrierName = manager.getNetworkCountryIso();
         return carrierName;
+    }
+
+    @SuppressLint("DefaultLocale")
+    public static String getTimeFromDate(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return String.format("%02d", cal.get(Calendar.HOUR)) + ":" + String.format("%02d", cal.get(Calendar.MINUTE));
     }
 }
