@@ -159,7 +159,8 @@ public class ActivitySplash extends BaseDinrActivity {
         if (event.equalsIgnoreCase(EndPointUrl.DINR_EVENT_GET_ALL_RESTAURANTS)) {
             restaurantLoaded = true;
             try {
-                wrapper.getPaymentInfo(context.getSharedPreferences(DinrSession.PREFS_NAME, 0).getInt(DinrSession.USER_ID_PREF_NAME, 0));
+                wrapper.getPaymentInfo(context.getSharedPreferences(DinrSession.PREFS_NAME,
+                        0).getInt(DinrSession.USER_ID_PREF_NAME, 0));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -187,7 +188,5 @@ public class ActivitySplash extends BaseDinrActivity {
         }
 
     }
-
-
 }
 

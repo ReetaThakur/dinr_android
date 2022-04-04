@@ -13,6 +13,7 @@ import org.apache.http.entity.StringEntity;
  */
 public class DinrClient {
 
+
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {

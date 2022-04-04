@@ -34,8 +34,6 @@ public class ErrorFinishDialog {
                 ((Activity)context).finish();
             }
         });
-
         dialog.show();
-
     }
 }
