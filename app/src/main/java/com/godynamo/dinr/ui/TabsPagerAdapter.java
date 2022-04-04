@@ -12,15 +12,15 @@ import com.godynamo.dinr.controller.FragmentRestaurant;
 /**
  * Created by dankovassev on 15-01-26.
  */
-public class TabsPagerAdapter extends FragmentStatePagerAdapter{
+public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
     FragmentMap mapFragment;
     FragmentAcount accountFragment;
     FragmentRestaurant restaurantFragment;
     FragmentNotifyRestaurant notifyRestaurantFragment;
 
-    public TabsPagerAdapter(FragmentManager fm){
-        super(fm);
+    public TabsPagerAdapter(FragmentManager fm) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         notifyRestaurantFragment = new FragmentNotifyRestaurant();
         restaurantFragment = new FragmentRestaurant();
         accountFragment = new FragmentAcount();
@@ -28,8 +28,8 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter{
     }
 
     @Override
-    public Fragment getItem(int index){
-        switch (index){
+    public Fragment getItem(int index) {
+        switch (index) {
             case 0:
                 restaurantFragment = new FragmentRestaurant();
                 return restaurantFragment;
@@ -49,37 +49,37 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter{
 
 
     @Override
-    public int getCount(){
+    public int getCount() {
         return 4;
     }
 
-    public void updateMap(){
-        if(mapFragment != null) {
+    public void updateMap() {
+        if (mapFragment != null) {
             mapFragment.updateMarkers();
         }
     }
 
-    public void updateRestaurants(){
-        if(restaurantFragment != null) {
+    public void updateRestaurants() {
+        if (restaurantFragment != null) {
             restaurantFragment.refreshData();
         }
     }
 
 
-    public void fetchRestaurants(){
-        if(restaurantFragment != null){
+    public void fetchRestaurants() {
+        if (restaurantFragment != null) {
             restaurantFragment.fetchRestaurants();
         }
     }
 
-    public void facebookLogin(String token){
-        if(accountFragment != null){
+    public void facebookLogin(String token) {
+        if (accountFragment != null) {
             accountFragment.facebookLoggedIn(token);
         }
     }
 
-    public void OnBackFragmentAcount(){
-        if(accountFragment != null){
+    public void OnBackFragmentAcount() {
+        if (accountFragment != null) {
             accountFragment.OnBackPressed();
         }
     }

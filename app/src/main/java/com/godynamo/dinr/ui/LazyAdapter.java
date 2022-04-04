@@ -1,6 +1,7 @@
 package com.godynamo.dinr.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -74,6 +75,7 @@ public class LazyAdapter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -137,8 +139,8 @@ public class LazyAdapter extends BaseAdapter {
         holder.restaurantOpenings.setText(hours);
 
         Location locationRestaurant = new Location("");
-        locationRestaurant.setLatitude(Double.valueOf(r.getLatitude()));
-        locationRestaurant.setLongitude(Double.valueOf(r.getLongitude()));
+        locationRestaurant.setLatitude(Double.parseDouble(r.getLatitude()));
+        locationRestaurant.setLongitude(Double.parseDouble(r.getLongitude()));
 
         if (location != null) {
             float distance = location.distanceTo(locationRestaurant);
