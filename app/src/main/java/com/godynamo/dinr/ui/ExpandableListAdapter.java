@@ -21,12 +21,12 @@ import java.util.List;
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
-    private List<String> listDataHeader; // header titles
+    private final Context context;
+    private final List<String> listDataHeader; // header titles
     private ImageView downArrow;
 
     // child data in format of header title, child title
-    private HashMap<String, List<City>> listDataChild;
+    private final HashMap<String, List<City>> listDataChild;
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<City>> listChildData) {
         this.context = context;

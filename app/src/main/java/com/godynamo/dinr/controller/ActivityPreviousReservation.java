@@ -12,6 +12,7 @@ import com.godynamo.dinr.R;
 import com.godynamo.dinr.api.EndPointUrl;
 import com.godynamo.dinr.db.DinrSession;
 import com.godynamo.dinr.model.Reservation;
+import com.godynamo.dinr.tools.Utils;
 import com.godynamo.dinr.tools.gsonUTCdateAdapter;
 import com.godynamo.dinr.ui.CancelReservationDialog;
 import com.godynamo.dinr.ui.ErrorDialog;
@@ -106,11 +107,23 @@ public class ActivityPreviousReservation extends BaseDinrActivity {
                     boolean reserved = false;
 
                     for (Reservation r : al) {
-                        if (r.getEndTime() == null) {
+
+                        String startTime = null, endTime = null;
+                        if (r.getStartTime() != null)
+                            startTime = Utils.getTimeFromDate(r.getStartTime());
+
+                        if (r.getEndTime() != null)
+                            endTime = Utils.getTimeFromDate(r.getEndTime());
+
+                        if (startTime != null && endTime != null)
+                            restaurantReservationTime = startTime + " to " + endTime;
+                        else if (startTime != null)
+                            restaurantReservationTime = startTime;
+                        /*if (r.getEndTime() == null) {
                             restaurantReservationTime = String.format("%02d", r.getStartTime().getHours()) + ":" + String.format("%02d", r.getStartTime().getMinutes());
                         } else {
                             restaurantReservationTime = String.format("%02d", r.getStartTime().getHours()) + ":" + String.format("%02d", r.getStartTime().getMinutes()) + " to " + String.format("%02d", r.getEndTime().getHours()) + ":" + String.format("%02d", r.getEndTime().getMinutes());
-                        }
+                        }*/
 
                         reservationDetail = r.getTable_detail();
                         reservationID = r.getId();

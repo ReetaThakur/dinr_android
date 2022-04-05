@@ -1,36 +1,34 @@
 package com.godynamo.dinr.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.godynamo.dinr.R;
 import com.godynamo.dinr.model.Opening;
+import com.godynamo.dinr.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantDetailsOpeningAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<Opening> items;
-    private ArrayList<Boolean> results;
+    private final Context context;
+    private final List<Opening> items;
+    private final ArrayList<Boolean> results;
 
 
     public RestaurantDetailsOpeningAdapter(Context c, List<Opening> o) {
         context = c;
         this.items = o;
 
-        results = new ArrayList<Boolean>();
+        results = new ArrayList<>();
         for (Opening opening : o) {
             results.add(false);
         }
@@ -38,7 +36,7 @@ public class RestaurantDetailsOpeningAdapter extends BaseAdapter {
 
     public int getClickedID() {
         for (int i = 0; i < results.size(); i++) {
-            if (results.get(i) == true) {
+            if (results.get(i)) {
                 return i;
             }
         }
@@ -48,7 +46,7 @@ public class RestaurantDetailsOpeningAdapter extends BaseAdapter {
 
     public int getClickedOpeniingID() {
         for (int i = 0; i < results.size(); i++) {
-            if (results.get(i) == true) {
+            if (results.get(i)) {
                 return items.get(i).getId();
             }
         }
@@ -73,6 +71,7 @@ public class RestaurantDetailsOpeningAdapter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
@@ -98,25 +97,18 @@ public class RestaurantDetailsOpeningAdapter extends BaseAdapter {
 
         Opening o = items.get(position);
 
-        if (results.get(position)) {
-            holder.radioButton.setChecked(true);
-        } else {
-            holder.radioButton.setChecked(false);
-        }
+        holder.radioButton.setChecked(results.get(position));
 
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        View.OnClickListener clickListener = v1 -> {
 
-                for (int i = 0; i < results.size(); i++) {
-                    if (i == position) {
-                        results.set(i, !results.get(i));
-                    } else {
-                        results.set(i, false);
-                    }
-
-                    notifyDataSetChanged();
+            for (int i = 0; i < results.size(); i++) {
+                if (i == position) {
+                    results.set(i, !results.get(i));
+                } else {
+                    results.set(i, false);
                 }
+
+                notifyDataSetChanged();
             }
         };
 
@@ -124,16 +116,23 @@ public class RestaurantDetailsOpeningAdapter extends BaseAdapter {
         holder.radioButton.setOnClickListener(clickListener);
         holder.seatsOpens.setText(o.getTable_detail());
 
-        if(o.getEnd_time() == null){
-            holder.restaurantOpening.setText(String.format("%02d", o.getStart_time().getHours()) + ":" + String.format("%02d", o.getStart_time().getMinutes()));
-        }else{
-            holder.restaurantOpening.setText(String.format("%02d", o.getStart_time().getHours()) + ":" + String.format("%02d", o.getStart_time().getMinutes()) + " to " + String.format("%02d", o.getEnd_time().getHours()) + ":" + String.format("%02d", o.getEnd_time().getMinutes()));
-        }
+        String startTime = null, endTime = null;
+        if (o.getStart_time() != null)
+            startTime = Utils.getTimeFromDate(o.getStart_time());
+
+        if (o.getEnd_time() != null)
+            endTime = Utils.getTimeFromDate(o.getEnd_time());
+
+        if (startTime != null && endTime != null)
+            holder.restaurantOpening.setText(startTime + " to " + endTime);
+        else if (startTime != null)
+            holder.restaurantOpening.setText(startTime);
+
 
         return v;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         public RelativeLayout container;
         public RadioButton radioButton;
         public TextView seatsOpens;

@@ -4,14 +4,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.godynamo.dinr.R;
 
 /**
  * Created by dankovassev on 15-01-28.
  */
-public class CustomTextView extends TextView {
+public class CustomTextView extends androidx.appcompat.widget.AppCompatTextView {
     public CustomTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);

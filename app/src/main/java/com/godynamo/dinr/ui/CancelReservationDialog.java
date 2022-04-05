@@ -2,10 +2,7 @@ package com.godynamo.dinr.ui;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.godynamo.dinr.R;
 import com.godynamo.dinr.controller.ActivityPreviousReservation;
@@ -15,7 +12,7 @@ import com.godynamo.dinr.controller.ActivityPreviousReservation;
  */
 public class CancelReservationDialog {
 
-    public CancelReservationDialog(final Activity activity, final int id){
+    public CancelReservationDialog(final Activity activity, final int id) {
         final Dialog dialog = new Dialog(activity, R.style.success_dialog);
 
         dialog.setContentView(R.layout.dialog_cancel_reservation);
@@ -23,22 +20,14 @@ public class CancelReservationDialog {
 
         Button dialogCancel = (Button) dialog.findViewById(R.id.dialogButtonCancel);
 
-        dialogCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((ActivityPreviousReservation)activity).cancelReservation(id);
-                dialog.dismiss();
-            }
+        dialogCancel.setOnClickListener(v -> {
+            ((ActivityPreviousReservation) activity).cancelReservation(id);
+            dialog.dismiss();
         });
 
         Button dialogDismiss = (Button) dialog.findViewById(R.id.dialogButtonNo);
 
-        dialogDismiss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        dialogDismiss.setOnClickListener(v -> dialog.dismiss());
 
 
         dialog.show();

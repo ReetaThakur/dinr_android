@@ -1,9 +1,7 @@
 package com.godynamo.dinr.ui;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,22 +35,14 @@ public class ConfirmReservationDialog {
 
         Button dialogButtonReserve = (Button) dialog.findViewById(R.id.dialogButtonReserve);
 
-        dialogButtonReserve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                ((ActivityRestaurantDetails)context).sendReservation();
-            }
+        dialogButtonReserve.setOnClickListener(v -> {
+            dialog.dismiss();
+            ((ActivityRestaurantDetails)context).sendReservation();
         });
 
         Button dialogButtonCancel = (Button) dialog.findViewById(R.id.dialogButtonCancel);
 
-        dialogButtonCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        dialogButtonCancel.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
