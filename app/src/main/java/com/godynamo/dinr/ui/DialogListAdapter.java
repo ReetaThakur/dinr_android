@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class DialogListAdapter extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<City> items;
+    private final Context context;
+    private final ArrayList<City> items;
     LocationManager locationManager;
 
 
@@ -69,7 +69,7 @@ public class DialogListAdapter extends BaseAdapter {
         return v;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         public TextView name;
     }
 

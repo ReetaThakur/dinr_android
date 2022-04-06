@@ -3,7 +3,6 @@ package com.godynamo.dinr.ui;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,12 +26,9 @@ public class ErrorFinishDialog {
 
         Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
 
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                ((Activity)context).finish();
-            }
+        dialogButton.setOnClickListener(v -> {
+            dialog.dismiss();
+            ((Activity)context).finish();
         });
         dialog.show();
     }

@@ -613,7 +613,7 @@ public class APIWrapper {
             public void onFailure(int statusCode, Header[] headers, String string, Throwable throwable) {
                 super.onFailure(statusCode, headers, string, throwable);
                 Log.e("getCities onFailure ", "path" + path + "\nstatusCode" + statusCode + "\nheaders " + " \nerrorResponse " + string);
-
+                mainClass.onFailure(null, EndPointUrl.DINR_EVENT_GET_CITIES);
             }
         });
     }

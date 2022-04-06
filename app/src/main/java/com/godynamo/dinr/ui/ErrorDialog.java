@@ -3,7 +3,6 @@ package com.godynamo.dinr.ui;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,19 +27,16 @@ public class ErrorDialog {
 
         Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
 
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        dialogButton.setOnClickListener(v -> {
 
-                if(errorMessage.equalsIgnoreCase("card not valid")){
+            if(errorMessage.equalsIgnoreCase("card not valid")){
 
-                    Intent intent = new Intent(context, ActivityPayment.class);
-                    context.startActivity(intent);
+                Intent intent = new Intent(context, ActivityPayment.class);
+                context.startActivity(intent);
 
-                }
-
-                dialog.dismiss();
             }
+
+            dialog.dismiss();
         });
 
         dialog.show();
