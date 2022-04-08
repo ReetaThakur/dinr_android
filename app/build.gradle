@@ -13,6 +13,8 @@ android {
         versionName "1.0.1.5"
     }
 
+    flavorDimensions "dinr"
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -21,16 +23,30 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "URL_ROOT", "\"http://getdinr.com/api/v1\""
+            // buildConfigField "String", "URL_ROOT", "\"http://getdinr.com/api/v1\""
         }
 
         debug {
             minifyEnabled false
             //https://staging.getdinr.com/api/v1
             //https://private-anon-6d43589377-dinrbryan.apiary-mock.com
-            buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.com/api/v1\""
+            //https://staging.getdinr.app
+            // buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.app\""
         }
 
+    }
+
+    productFlavors {
+        prod { // live
+            buildConfigField "String", "URL_ROOT", "\"http://getdinr.com/api/v1\""
+        }
+        dev {// testing
+            //https://staging.getdinr.com/api/v1
+            //https://private-anon-6d43589377-dinrbryan.apiary-mock.com
+            //https://staging.getdinr.app
+            // buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.app\""
+            buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.com/api/v1\""
+        }
     }
 
     dexOptions {
