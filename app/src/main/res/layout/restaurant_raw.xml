@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dinr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,50 +20,49 @@
         android:background="@drawable/gradient_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="24dp"
-        android:paddingTop="5dp">
+        android:paddingTop="5dp"
+        android:paddingBottom="24dp">
 
         <com.godynamo.dinr.ui.CustomTextView
             android:id="@+id/restaurant_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
+            android:layout_toStartOf="@+id/map_icon"
+            android:layout_toLeftOf="@+id/map_icon"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="JOE BEEF"
             android:textColor="@color/white"
             android:textSize="20sp"
-            dinr:fontName="MarkSmallCaps-Regular.otf"
-            android:layout_toLeftOf="@+id/map_icon"
-            android:layout_toStartOf="@+id/map_icon"
-            android:layout_alignParentLeft="true"
-            />
+            dinr:fontName="MarkSmallCaps-Regular.otf" />
 
 
         <ImageView
             android:id="@+id/map_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginLeft="2dp"
             android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
             android:layout_toLeftOf="@+id/restaurant_distance"
             android:src="@drawable/icon_pin_yellow" />
 
         <com.godynamo.dinr.ui.CustomTextView
-            android:layout_alignParentRight="true"
             android:id="@+id/restaurant_distance"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_alignBottom="@+id/map_icon"
             android:layout_alignTop="@+id/map_icon"
-            android:layout_marginLeft="2dp"
+            android:layout_alignBottom="@+id/map_icon"
+            android:layout_alignParentRight="true"
             android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
-            android:paddingTop="5dp"
             android:maxLines="1"
+            android:paddingTop="5dp"
             android:text="2 km"
             android:textColor="@color/white"
-            android:layout_marginRight="10dp"
             android:textSize="16sp"
             android:textStyle="bold"
             dinr:fontName="MarkSmallCaps-Regular.otf" />
@@ -73,10 +73,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/restaurant_name"
-            android:orientation="horizontal"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="24dp"
@@ -90,8 +90,8 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="left"
                 android:layout_marginLeft="10dp"
+                android:gravity="left"
                 android:maxLines="1"
                 android:text=" 8:30/8:45/9:30/10:30..."
                 android:textColor="@color/white"

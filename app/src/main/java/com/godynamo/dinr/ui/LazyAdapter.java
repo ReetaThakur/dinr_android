@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import androidx.core.content.ContextCompat;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.godynamo.dinr.R;
+import com.godynamo.dinr.api.EndPointUrl;
 import com.godynamo.dinr.model.Opening;
 import com.godynamo.dinr.model.Restaurant;
 
@@ -102,6 +105,7 @@ public class LazyAdapter extends BaseAdapter {
         Restaurant r = items.get(position);
 
         holder.name.setText(r.getName());
+
         Glide.with(context).load(r.getMainPhoto()).into(holder.backgroundPicture);
 
         String hours = "";

@@ -94,7 +94,6 @@ public class ActivitySplash extends BaseDinrActivity {
 
         }
 
-
     }
 
     private void prepareApp() {
@@ -194,7 +193,7 @@ public class ActivitySplash extends BaseDinrActivity {
     private void loadApplication() {
 
         if (restaurantLoaded) {
-            Intent intent = new Intent(ActivitySplash.this, ActivityMain.class);
+            Intent intent = new Intent(ActivitySplash.this, ActivityMainNew.class);
             startActivity(intent);
             finish();
         }

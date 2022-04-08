@@ -99,7 +99,7 @@ public class FragmentNotifyRestaurant extends Fragment implements APICaller {
                     startActivity(intent);
 
                 } else {
-                    ((ActivityMain) getActivity()).goToAccount();
+                    ((ActivityMainNew) getActivity()).goToAccount();
                 }
             }
         });
@@ -177,12 +177,11 @@ public class FragmentNotifyRestaurant extends Fragment implements APICaller {
 
     }
 
-
     @Override
     public void onFailure(JSONObject errorResponse, String event) {
-
         updateNotifyRestaurants();
-
     }
+
+
 }
 

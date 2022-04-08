@@ -194,8 +194,8 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
             map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
                 @Override
                 public void onMyLocationChange(Location location) {
-                    if (((ActivityMain) getActivity()).location) {
-                        ((ActivityMain) getActivity()).location = false;
+                    if (((ActivityMainNew) getActivity()).location) {
+                        ((ActivityMainNew) getActivity()).location = false;
 
                         updateMarkers();
 
@@ -212,7 +212,7 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
                             map.moveCamera(cu);
                         }
 
-                        ((ActivityMain) getActivity()).refreshData();
+                        ((ActivityMainNew) getActivity()).refreshData();
                     }
                 }
             });
