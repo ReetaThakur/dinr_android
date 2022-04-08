@@ -74,7 +74,4 @@ dependencies {
     // implementation 'com.facebook.android:facebook-android-sdk:12.3.0'
     implementation 'com.loopj.android:android-async-http:1.4.11'
 
-    //View Pager
-    implementation 'com.android.support:appcompat-v7:22.2.0'
-    implementation 'com.android.support:design:22.2.0'
 }
