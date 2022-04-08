@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+
 import androidx.core.content.ContextCompat;
 
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.braze.support.StringUtils;
 import com.bumptech.glide.Glide;
 import com.godynamo.dinr.R;
 import com.godynamo.dinr.api.EndPointUrl;
@@ -143,8 +145,10 @@ public class LazyAdapter extends BaseAdapter {
         holder.restaurantOpenings.setText(hours);
 
         Location locationRestaurant = new Location("");
-        locationRestaurant.setLatitude(Double.parseDouble(r.getLatitude()));
-        locationRestaurant.setLongitude(Double.parseDouble(r.getLongitude()));
+        if (r.getLatitude() != null && !StringUtils.isNullOrEmpty(r.getLatitude()))
+            locationRestaurant.setLatitude(Double.parseDouble(r.getLatitude()));
+        if (r.getLongitude() != null && !StringUtils.isNullOrEmpty(r.getLongitude()))
+            locationRestaurant.setLongitude(Double.parseDouble(r.getLongitude()));
 
         if (location != null) {
             float distance = location.distanceTo(locationRestaurant);
