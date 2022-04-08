@@ -12,7 +12,6 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.godynamo.dinr.R;
 import com.godynamo.dinr.api.EndPointUrl;
-import com.godynamo.dinr.db.DinrSession;
 import com.godynamo.dinr.ui.ErrorDialog;
 import com.godynamo.dinr.ui.SuccessDialog;
 import com.loopj.android.http.RequestParams;
@@ -21,10 +20,6 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.protocol.HTTP;
 import org.json.JSONObject;
 
-
-/**
- * Created by dankovassev on 15-01-31.
- */
 public class ActivityForgotPassword extends BaseDinrActivity {
 
     private EditText email;
@@ -42,12 +37,7 @@ public class ActivityForgotPassword extends BaseDinrActivity {
         textView.setText(this.getString(R.string.forgot_password));
 
         ImageView backButton = (ImageView) actionBar.getCustomView().findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
 
         Typeface myTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/MarkSmallCaps-Regular.otf");
 
