@@ -49,6 +49,7 @@ public class ActivityMainNew extends BaseDinrFragmentActivity {
     TabsPagerAdapterNew mAdapter;
 
     ViewPager2 viewPager2;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +103,7 @@ public class ActivityMainNew extends BaseDinrFragmentActivity {
         viewPager2 = findViewById(R.id.viewPager);
         viewPager2.setAdapter(mAdapter);
 
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        tabLayout = findViewById(R.id.tabLayout);
         tvHeading = findViewById(R.id.custom_action_bar_title);
 
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(
@@ -381,6 +382,12 @@ public class ActivityMainNew extends BaseDinrFragmentActivity {
 
 
     public void goToAccount() {
+
+        TabLayout.Tab tab = tabLayout.getTabAt(3);
+        if (tab != null) {
+            tab.select();
+        }
+
         // actionBar.setSelectedNavigationItem(3);
     }
 
