@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dinr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="fill_horizontal"
+    android:orientation="vertical">
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/custom_action_bar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Restaurants"
+        android:textSize="24sp"
+        dinr:fontName="MarkRegular.otf"/>
+
+    <com.godynamo.dinr.ui.CustomTextView
+        android:id="@+id/sign_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:text="@string/sign_out"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="5dp"
+        android:textColor="@color/white"
+        dinr:fontName="MarkSmallCaps-Regular.otf"/>
+
+</RelativeLayout>

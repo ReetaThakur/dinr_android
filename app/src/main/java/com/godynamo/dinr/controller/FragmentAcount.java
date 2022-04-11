@@ -184,7 +184,7 @@ public class FragmentAcount extends Fragment implements APICaller {
         logInFaceBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ActivityMain) getActivity()).LoginFacebook();
+                ((ActivityMainNew) getActivity()).LoginFacebook();
             }
         });
         // start Facebook Login

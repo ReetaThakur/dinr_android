@@ -53,7 +53,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
     public boolean location = false;
 
-  //  private SimpleFacebook mSimpleFacebook;
+    //  private SimpleFacebook mSimpleFacebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -321,7 +321,6 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //mSimpleFacebook.onActivityResult(this, requestCode, resultCode, data);
@@ -332,7 +331,7 @@ public class ActivityMain extends BaseDinrFragmentActivity implements ActionBar.
     @Override
     protected void onResume() {
         super.onResume();
-       // mSimpleFacebook = SimpleFacebook.getInstance(this);
+        // mSimpleFacebook = SimpleFacebook.getInstance(this);
 
         BrazeInAppMessageManager.getInstance().registerInAppMessageManager(this);
         if (mRefreshData) {

@@ -95,5 +95,6 @@
     <string name="your_reservation_cannot_be_guaranteed">"Le restaurant se réserve le droit d'annuler la réservation si le nombre de convives à votre arrivée est inférieur au nombre annoncé. Vous pouvez annuler votre réservation jusqu'à 60 minutes avant l'heure prévue. Si vous ne vous présentez pas, votre carte de crédit pourrait être débitée 30$ par personne."</string>
     <string name="get_notified">"Soyez avisés aussitôt qu\'un de vos restaurants favoris a de nouvelles disponibilités. Ces notifications sont journalières."</string>
     <string name="closed">\"Fermé\"</string>
+    <string name="notifications">Notifications</string>
 
 </resources>

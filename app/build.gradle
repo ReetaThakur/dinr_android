@@ -13,6 +13,8 @@ android {
         versionName "1.0.1.5"
     }
 
+    flavorDimensions "dinr"
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -21,16 +23,30 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "URL_ROOT", "\"http://getdinr.com/api/v1\""
+            // buildConfigField "String", "URL_ROOT", "\"http://getdinr.com/api/v1\""
         }
 
         debug {
             minifyEnabled false
             //https://staging.getdinr.com/api/v1
             //https://private-anon-6d43589377-dinrbryan.apiary-mock.com
-            buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.com/api/v1\""
+            //https://staging.getdinr.app
+            // buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.app\""
         }
 
+    }
+
+    productFlavors {
+        prod { // live
+            buildConfigField "String", "URL_ROOT", "\"http://getdinr.com/api/v1\""
+        }
+        dev {// testing
+            //https://staging.getdinr.com/api/v1
+            //https://private-anon-6d43589377-dinrbryan.apiary-mock.com
+            //https://staging.getdinr.app
+            // buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.app\""
+            buildConfigField "String", "URL_ROOT", "\"https://staging.getdinr.com/api/v1\""
+        }
     }
 
     dexOptions {
@@ -64,10 +80,14 @@ dependencies {
 
     //implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
 //    compile 'com.facebook.fresco:fresco:1.1.0'
     // Facebook Android SDK (everything)
     // implementation 'com.facebook.android:facebook-android-sdk:12.3.0'
     implementation 'com.loopj.android:android-async-http:1.4.11'
+
 }

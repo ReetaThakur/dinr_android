@@ -1,34 +1,35 @@
 package com.godynamo.dinr.ui;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.godynamo.dinr.controller.FragmentAcount;
 import com.godynamo.dinr.controller.FragmentMap;
 import com.godynamo.dinr.controller.FragmentNotifyRestaurant;
 import com.godynamo.dinr.controller.FragmentRestaurant;
 
-/**
- * Created by dankovassev on 15-01-26.
- */
-public class TabsPagerAdapter extends FragmentStatePagerAdapter {
+
+public class TabsPagerAdapterNew extends FragmentStateAdapter {
 
     FragmentMap mapFragment;
     FragmentAcount accountFragment;
     FragmentRestaurant restaurantFragment;
     FragmentNotifyRestaurant notifyRestaurantFragment;
 
-    public TabsPagerAdapter(FragmentManager fm) {
-        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public TabsPagerAdapterNew(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
         notifyRestaurantFragment = new FragmentNotifyRestaurant();
         restaurantFragment = new FragmentRestaurant();
         accountFragment = new FragmentAcount();
     }
 
+
+    @NonNull
     @Override
-    public Fragment getItem(int index) {
-        switch (index) {
+    public Fragment createFragment(int position) {
+        switch (position) {
             case 0:
                 restaurantFragment = new FragmentRestaurant();
                 return restaurantFragment;
@@ -41,14 +42,13 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
             case 3:
                 accountFragment = new FragmentAcount();
                 return accountFragment;
-        }
 
+        }
         return null;
     }
 
-
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return 4;
     }
 
@@ -58,12 +58,12 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
         }
     }
 
+
     public void updateRestaurants() {
         if (restaurantFragment != null) {
             restaurantFragment.refreshData();
         }
     }
-
 
     public void fetchRestaurants() {
         if (restaurantFragment != null) {

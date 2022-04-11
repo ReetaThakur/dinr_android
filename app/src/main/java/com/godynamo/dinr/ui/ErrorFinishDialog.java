@@ -17,7 +17,7 @@ public class ErrorFinishDialog {
         final Dialog dialog = new Dialog(context, R.style.error_dialog);
 
         dialog.setContentView(R.layout.dialog_error);
-
+        dialog.setCancelable(false);
         TextView titleView = (TextView) dialog.findViewById(R.id.title);
         titleView.setText(title);
 

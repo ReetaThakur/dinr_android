@@ -5,10 +5,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.core.util.Pools;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,7 +134,7 @@ public class FragmentRestaurant extends Fragment implements APICaller {
 
         wrapper.Restaurants();
 
-    //    setRetainInstance(true);
+        //    setRetainInstance(true);
     }
 
     @Override
@@ -152,7 +154,7 @@ public class FragmentRestaurant extends Fragment implements APICaller {
                     startActivity(intent);
 
                 } else {
-                    ((ActivityMain) getActivity()).goToAccount();
+                    ((ActivityMainNew) getActivity()).goToAccount();
                 }
 
             }
@@ -200,10 +202,9 @@ public class FragmentRestaurant extends Fragment implements APICaller {
         updateRestaurants();
 
         if (getActivity() != null) {
-            ((ActivityMain) getActivity()).updateMap();
+            ((ActivityMainNew) getActivity()).updateMap();
         }
     }
-
 
     public void updateRestaurants() {
 
@@ -225,7 +226,6 @@ public class FragmentRestaurant extends Fragment implements APICaller {
         adapter.notifyDataSetChanged();
         listAdapter.notifyDataSetChanged();
     }
-
 
     @Override
     public void onFailure(JSONObject errorResponse, String event) {
